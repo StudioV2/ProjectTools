@@ -34,23 +34,12 @@ namespace ProjectTools {
 			}
 	    }
 
-		public static void Rmrf(string target_dir)
-		{
-			string[] files = Directory.GetFiles(target_dir);
-			string[] dirs = Directory.GetDirectories(target_dir);
-			
-			foreach (string file in files)
-			{
-				File.SetAttributes(file, FileAttributes.Normal);
-				File.Delete(file);
-			}
-			
-			foreach (string dir in dirs)
-			{
-				Rmrf(dir);
-			}
-			
-			Directory.Delete(target_dir, false);
+		public static void OpenTerminal(string startup_string = "") {
+			#if UNITY_EDITOR_OSX
+			ShellHelper.shell("osascript", "-e 'tell app \"Terminal\" to do script \"" + startup_string + "\" activate'");
+			#elif UNITY_EDITOR_WIN
+
+			#endif
 		}
 	}
 }

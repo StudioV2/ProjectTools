@@ -221,7 +221,6 @@ namespace ProjectTools {
 						} else {
 							// Not using proskin
 						}
-
 						icon_map.Add (n, EditorGUIUtility.Load(p) as Texture);
 					}
 				}
@@ -238,7 +237,6 @@ namespace ProjectTools {
 				GUILayout.Box("\"git\" doesn't seem to be installed.\n\"git\" is distributed as part of the Xcode command line tools on Mac OS X.", redBoxStyle ,new GUILayoutOption[]{GUILayout.ExpandWidth(true)});
 	            return;
 	        } else {
-
 				if (!initialized && !gitignore) {
 					EditorGUILayout.BeginHorizontal ();
 			        if (initialized) GUI.enabled = false;
@@ -314,8 +312,6 @@ namespace ProjectTools {
 					GUILayout.Box(status, outStyle ,new GUILayoutOption[]{GUILayout.ExpandWidth(true)});
 				}
 		        GUI.color = Color.white;
-		        //if (hasUncommittedChanges())
-				    //commit_message = EditorGUILayout.TextField("Commit message :", commit_message);
 
 				EditorGUILayout.BeginHorizontal ();
 				if (GUIHelper.Button(icon_map["add"], "git add", EditorStyles.miniButtonLeft, () => {return hasUnstagedChanges();})) {

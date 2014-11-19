@@ -52,16 +52,6 @@ namespace ProjectTools {
 			}
 		}
 
-		/*
-		private static bool projectStructureValid() {
-			refreshSubProjectsList();
-			foreach(var subp in subprojects) {
-				if (subp.Value) return true;
-			}
-			return false;
-		}
-		*/
-
 		private static bool isIosSubProject() {
 			var folders = Application.dataPath.Split('/');
 			return folders[folders.Length-2]=="ios";

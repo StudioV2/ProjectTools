@@ -9,7 +9,7 @@ namespace ProjectTools {
 
 	    public static string GitLocalUsername { get; internal set; }
 	    public static string GitLocalUserEmail { get; internal set; }
-	    public static string GitExecutablePath { get; internal set; }
+	    //public static string GitExecutablePath { get; internal set; }
 
 		[MenuItem("Project/Git Settings")]
 		private static void showGitSettingsWindow() {
@@ -34,10 +34,12 @@ namespace ProjectTools {
 			GitLocalUserEmail = EditorGUILayout.TextField("Local git user email :", GitLocalUserEmail);
 			EditorGUILayout.EndVertical ();
 
+			/*
 	        EditorGUILayout.LabelField("Git executable (Shitdowns only)", EditorStyles.boldLabel);
 			EditorGUILayout.BeginVertical ();
 	        GitExecutablePath = EditorGUILayout.TextField("Git executable :", GitExecutablePath);
 			EditorGUILayout.EndVertical ();
+			*/
 
 			if (GUILayout.Button ("apply")) {
 				ShellHelper.FilteredDebugLog(ShellHelper.shell ("git", "config user.name \"" + GitLocalUsername + "\""));
