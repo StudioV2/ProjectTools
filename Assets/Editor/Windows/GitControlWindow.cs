@@ -540,21 +540,22 @@ namespace ProjectTools {
 				GUILayout.Button ("", EditorStyles.miniButtonMid, GUILayout.Height(20));
 				GUI.enabled = true;
 
-				GUI.enabled = true;
-				if (GUILayout.Button (icon_map["term"], EditorStyles.miniButtonMid, GUILayout.ExpandWidth(false))) {
-					#if UNITY_EDITOR_OSX
-					ShellHelper.shell("osascript", "-e 'tell app \"Terminal\" to do script \"cd " + Application.dataPath + "/.. ; git status\" activate'");
-					#elif UNITY_EDITOR_WIN
-					//ShellHelper.shell("cmd.exe", "");
-					#endif
+				if (GUIHelper.Button(icon_map["nuke"], "nuke the local repository", EditorStyles.miniButtonMid, () => {return true;}, GUILayout.ExpandWidth(false))) {
+					GUIHelper.OpenNukeConfirmWindow();
 				}
-				if (GUILayout.Button (icon_map["config"], EditorStyles.miniButtonMid, GUILayout.ExpandWidth(false))) {
-                    GUIHelper.OpenGitSettingsWindow();	
+				if (GUIHelper.Button(icon_map["term"], "open the terminal in the current project directory", EditorStyles.miniButtonMid, () => {return true;}, GUILayout.ExpandWidth(false))) {
+					ShellHelper.OpenTerminal(Application.dataPath + "/.. ; git status");
 				}
-				if (GUILayout.Button (icon_map["update"], EditorStyles.miniButtonRight, GUILayout.ExpandWidth(false))) {
+				if (GUIHelper.Button(icon_map["config"], "open the configuration window", EditorStyles.miniButtonMid, () => {return true;}, GUILayout.ExpandWidth(false))) {
+					GUIHelper.OpenGitSettingsWindow();	
+				}
+				if (GUIHelper.Button(icon_map["update"], "update the window content", EditorStyles.miniButtonRight, () => {return true;}, GUILayout.ExpandWidth(false))) {
 					AssetDatabase.Refresh();
-		            refresh();
-		        }
+					refresh();
+					remote = "";
+					branch = "";
+					status = "";
+				}
 				EditorGUILayout.EndHorizontal ();
 			}
 		}

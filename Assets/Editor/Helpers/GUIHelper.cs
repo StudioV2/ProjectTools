@@ -44,5 +44,9 @@ namespace ProjectTools {
         public static void OpenGitSettingsWindow() {
             EditorWindow.GetWindow<GitSettingsWindow>("Git settings", true);
         }
+
+		public static void OpenNukeConfirmWindow() {
+			EditorWindow.GetWindow<NukeConfirmWindow>(true, "Nuke this project versionning", true);
+		}
 	}
 }
