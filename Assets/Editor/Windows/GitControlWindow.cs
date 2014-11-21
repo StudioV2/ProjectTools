@@ -444,6 +444,7 @@ namespace ProjectTools {
 						if (GUIHelper.Button(icon_map["pull_individual_subm"], "pull from submodule origin remote", EditorStyles.miniButtonMid, () => {return !unadded || !unremoved || !uncommited;}, GUILayout.ExpandWidth(false))) {
 							var str = "--git-dir=" + ShellHelper.shell("pwd").Replace("\n","").Replace("\r","") + "/" + short_path + "/.git pull origin master";
 							ShellHelper.FilteredDebugLog( ShellHelper.shell("git", str));
+							AssetDatabase.Refresh();
 							refresh();
 							this.Repaint();
 						}
@@ -494,6 +495,8 @@ namespace ProjectTools {
                             GUIHelper.OpenToSubmoduleWindow(str, 
                                     (string old_path, string new_path, string url) => {
                                         GitHelper.assetsSubdirectoryToSubModule(git_commit_prefix, old_path, url);
+										AssetDatabase.Refresh();
+										refresh();
                                     });
                         }
                         GUILayout.EndHorizontal();
