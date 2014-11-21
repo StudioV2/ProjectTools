@@ -556,10 +556,10 @@ namespace ProjectTools {
 				}
 				if (GUIHelper.Button(icon_map["update"], "update the window content", EditorStyles.miniButtonRight, () => {return true;}, GUILayout.ExpandWidth(false))) {
 					AssetDatabase.Refresh();
-					refresh();
 					remote = "";
 					branch = "";
 					status = "";
+					refresh();
 				}
 				EditorGUILayout.EndHorizontal ();
 			}
