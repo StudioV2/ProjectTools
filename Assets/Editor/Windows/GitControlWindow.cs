@@ -357,18 +357,20 @@ namespace ProjectTools {
 
 				if (GUIHelper.Button (icon_map["plus"], "add remote", EditorStyles.miniButtonMid, () => {return true;}, GUILayout.ExpandWidth(false))) {
 					addType = FoldType.ADDING_REMOTE;
+					if (remote_list.Count == 0)
+						newRemoteName = "origin";
 		        }
 				EditorGUILayout.EndHorizontal ();
 
 				if (addType == FoldType.ADDING_REMOTE) {
-					newRemoteUrl = EditorGUILayout.TextField("Remote url :", newRemoteUrl);
 					newRemoteName = EditorGUILayout.TextField("Remote name :", newRemoteName);
+					newRemoteUrl = EditorGUILayout.TextField("Remote url :", newRemoteUrl);
 				    EditorGUILayout.BeginHorizontal ();
 		            if (GUILayout.Button("cancel")) {
 						addType = FoldType.NONE;
 		            }
 		            if (GUILayout.Button("add")) {
-		                GitHelper.addRemote(newRemoteName, newRemoteUrl);
+						GitHelper.remote_add_origin(newRemoteUrl, newRemoteName);
 		                newRemoteName = "";
 		                newRemoteUrl = "";
 						addType = FoldType.NONE;

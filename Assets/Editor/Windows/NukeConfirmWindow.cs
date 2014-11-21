@@ -21,6 +21,7 @@ namespace ProjectTools {
 			if (GUILayout.Button("yes")) {
 				ShellHelper.shell("rm", "-rf .git");
 				ShellHelper.shell("rm", "-rf .gitignore");
+				GitControlWindow.refresh();
 				this.Close ();
 			}
 			EditorGUILayout.EndHorizontal();
