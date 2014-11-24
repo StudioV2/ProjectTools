@@ -218,7 +218,8 @@ namespace ProjectTools {
 	    }
 
         public static void assetsSubdirectoryToSubModule(string commit_prefix, string pathToSubmodule, string remoteUrl, string target_submodule_path = "") {
-            #if UNITY_EDITOR_OSX
+			System.IO.File.WriteAllText(pathToSubmodule + "/.gitignore", submodule_gitignore_content);
+			#if UNITY_EDITOR_OSX
 			ShellHelper.shell("osascript", "-e 'tell app \"Terminal\" to do script \"" +
 					"cd " + Application.dataPath.Replace("/Assets", "") + "/" + pathToSubmodule + " ; " +
 					"git init ; git add . ; " +
@@ -229,7 +230,7 @@ namespace ProjectTools {
 			    	"rm -rf " + Application.dataPath.Replace("/Assets", "") + "/" + pathToSubmodule + " ; " +
 			        "rm " + Application.dataPath.Replace("/Assets", "") + "/" + pathToSubmodule + ".meta ; " +
 					"git add -u . ; " +
-					"git commit -m foo ; " +
+			        "git commit -m " + commit_prefix + " ; " +
 			        "git submodule add " + remoteUrl + " " + pathToSubmodule + " -f ; " +
 			        "git add . ; " + 
 			        "git commit -m " + commit_prefix + " ; " +
